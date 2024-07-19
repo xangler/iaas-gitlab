@@ -1,0 +1,21 @@
+stages:
+  - stest
+  - sbuild
+
+before_script:
+  - echo "before_script"
+
+jtest:
+  stage: stest
+  script:
+    - make irepo
+    - make itest
+  tags:
+    - any
+
+jbuild:
+  stage: sbuild
+  script:
+    - make irepo
+    - make image
+  when: manual
